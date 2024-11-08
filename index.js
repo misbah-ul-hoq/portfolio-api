@@ -38,7 +38,7 @@ app.post("/api/email", async (req, res) => {
         res.send(error);
       } else {
         console.log(info);
-        res.send(info.response);
+        res.send(info);
       }
     }
   );
