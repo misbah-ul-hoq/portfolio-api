@@ -34,10 +34,10 @@ app.post("/api/email", async (req, res) => {
     },
     function (error, info) {
       if (error) {
-        console.log(error);
+        // console.log(error);
         res.send(error);
       } else {
-        console.log(info);
+        // console.log(info);
         res.send(info);
       }
     }
