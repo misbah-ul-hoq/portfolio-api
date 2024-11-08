@@ -14,8 +14,8 @@ const transporter = nodemailer.createTransport({
     pass: emailPass,
   },
 });
-//middlewares
 
+//middlewares
 app.use(express.json());
 app.use(cors());
 
@@ -27,8 +27,10 @@ app.post("/api/email", async (req, res) => {
       from: emailUser,
       to: "extraordinarymisbah@gmail.com",
       subject: `${req.body.subject}`,
-      text: `${req.body.message}`,
-      html: `<h3>Sender:</h3> <p>${req.body.name} ${req.body.email}</p>`,
+      // text: `${req.body.message} <br /> `,
+      html: `<h3>${req.body.message}</h3>  <br /> 
+      <h3>Sender's Name: ${req.body.name}</h3> 
+      <h3>Senders Email: ${req.body.email}</h3>`,
     },
     function (error, info) {
       if (error) {
