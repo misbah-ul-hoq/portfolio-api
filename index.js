@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 app.post("/api/email", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   transporter.sendMail(
     {
