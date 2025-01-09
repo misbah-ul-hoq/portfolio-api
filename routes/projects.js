@@ -9,9 +9,7 @@ projects.get("/", async (req, res) => {
 });
 
 projects.post("/", validateToken, async (req, res) => {
-  const project = await new Project({
-    html: req.body.html,
-  }).save();
+  const project = await new Project(req.body).save();
   res.send(project);
 });
 
