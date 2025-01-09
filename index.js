@@ -2,6 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import nodemailer from "nodemailer";
+import { dbConnect } from "./startup/db.js";
+import routes from "./startup/routes.js";
+
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 8080;
@@ -18,6 +21,8 @@ const transporter = nodemailer.createTransport({
 //middlewares
 app.use(express.json());
 app.use(cors());
+routes(app);
+dbConnect();
 
 app.post("/api/email", async (req, res) => {
   // console.log(req.body);
