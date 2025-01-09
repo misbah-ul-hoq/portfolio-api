@@ -8,6 +8,12 @@ projects.get("/", async (req, res) => {
   res.send(projects);
 });
 
+projects.get("/:slug", async (req, res) => {
+  const project = await Project.findOne({ slug: req.params.slug });
+  if (!project) return res.status(404).send({ message: "Project not found" });
+  res.send(project);
+});
+
 projects.post("/", validateToken, async (req, res) => {
   const project = await new Project(req.body).save();
   res.send(project);
