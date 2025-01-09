@@ -44,6 +44,10 @@ app.post("/api/email", async (req, res) => {
   );
 });
 
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
 app.listen(port, () => {
   console.log(`server started at http://localhost:${port}`);
 });
