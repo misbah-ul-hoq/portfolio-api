@@ -19,12 +19,24 @@ projects.post("/", validateToken, async (req, res) => {
   res.send(project);
 });
 
-projects.put("/", (req, res) => {
-  res.send("hello");
+projects.put("/:slug", validateToken, async (req, res) => {
+  const foundProject = await Project.findOne({ slug: req.params.slug });
+  if (!foundProject)
+    return res.status(404).send({ message: "Project not found" });
+  const updatedProject = await Project.findOneAndUpdate(
+    { slug: req.params.slug },
+    req.body,
+    { new: true }
+  );
+  res.send(updatedProject);
 });
 
-projects.delete("/", (req, res) => {
-  res.send("hello");
+projects.delete("/:slug", validateToken, async (req, res) => {
+  const foundProject = await Project.findOne({ slug: req.params.slug });
+  if (!foundProject)
+    return res.status(404).send({ message: "Project not found" });
+  const deletedProject = await Project.deleteOne({ slug: req.params.slug });
+  res.send(deletedProject);
 });
 
 export default projects;
