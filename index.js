@@ -18,9 +18,16 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+let allowedOrigins;
+
+if (process.env.NODE_ENV === "development") {
+  allowedOrigins = "http://localhost:3000";
+} else {
+  allowedOrigins = "https://misbahulhoq.vercel.app";
+}
 //middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origins: allowedOrigins }));
 routes(app);
 dbConnect();
 
