@@ -46,8 +46,7 @@ app.post("/api/email", async (req, res) => {
     {
       from: emailUser,
       to: "extraordinarymisbah@gmail.com",
-      subject: `${req.body.subject}`,
-      // text: `${req.body.message} <br /> `,
+      subject: `New message from portfolio.`,
       html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -207,14 +206,14 @@ app.post("/api/email", async (req, res) => {
     },
     function (error, info) {
       if (error) {
-        // console.log(error);
-        res.send(error);
+        console.log(error);
+        // res.send(error);
       } else {
-        // console.log(info);
-        res.send(info);
+        //console.log(info);
       }
     }
   );
+  res.send({ message: "Email sent successfully", email });
 });
 
 app.get("/", (req, res) => {
